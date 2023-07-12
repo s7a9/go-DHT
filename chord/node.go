@@ -171,7 +171,7 @@ func (n *ChordNode) Delete(key string) bool {
 		logrus.Error(n.Addr, " Delete: failed in FindSuccessor ", err)
 		return false
 	}
-	logrus.Info(n.Addr, " Delete: deleting ", targetAddr, " for key ", key, " ", targetID)
+	logrus.Info(n.Addr, " Delete: asking ", targetAddr, " to delete key ", key, " ", targetID)
 	var link chordLink
 	err = link.Dial(targetAddr)
 	if err != nil {

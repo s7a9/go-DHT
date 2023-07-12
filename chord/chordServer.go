@@ -170,8 +170,15 @@ func (n *ChordNode) DeleteData(request DeleteDataRequest, ok *bool) error {
 		n.backupDataLock.Unlock()
 	} else {
 		n.dataLock.Lock()
+		defer n.dataLock.Unlock()
+		_, exist := n.data[request.Key]
+		if !exist {
+			err := fmt.Errorf("key %s not exist", request.Key)
+			logrus.Error(n.Addr, " DeleteData: ", err)
+			*ok = false
+			return err
+		}
 		delete(n.data, request.Key)
-		n.dataLock.Unlock()
 		go func() {
 			succ := n.getOnlineSucc()
 			if succ == nil {

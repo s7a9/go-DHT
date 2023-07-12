@@ -86,9 +86,9 @@ func TestSmallForceQuit(t *testing.T) {
 }
 
 func TestQAFQ(t *testing.T) {
-	const N, M = 10, 40
-	var FQ = [...]int32{3, 4, 9}
-	var Q = [...]int32{5, 6, 7}
+	const N, M = 20, 200
+	var FQ = [...]int32{3, 4, 9, 12, 14, 16}
+	var Q = [...]int32{5, 6, 7, 13, 15, 19}
 	var nodes [N]*ChordNode
 	for i := 0; i < N; i++ {
 		nodes[i] = CreateChordNode(makeLocalAddr(i))
